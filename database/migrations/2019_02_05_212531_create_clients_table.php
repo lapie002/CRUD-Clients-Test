@@ -19,6 +19,8 @@ class CreateClientsTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('telephone');
+            $table->string('email');
+            $table->string('image');
             $table->date('datecontact');
             $table->timestamps();
 

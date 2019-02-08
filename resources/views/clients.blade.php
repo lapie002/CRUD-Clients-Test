@@ -14,6 +14,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
+                <th>Image</th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Telephone</th>
@@ -25,6 +26,7 @@
             <tbody>
             @foreach($clients as $client)
                 <tr>
+                    <td><img class="img-responsive" width=42px height=42px alt="" src="/uploads/{{ $client->image }}" /></td>
                     <td>{{ $client->nom }}</td>
                     <td>{{ $client->prenom }}</td>
                     <td>{{ $client->telephone }}</td>

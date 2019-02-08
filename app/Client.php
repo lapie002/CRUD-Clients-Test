@@ -15,6 +15,6 @@ class Client extends Model
 
       public $timestamps = false;
 
-      protected $fillable = ['id','nom', 'prenom', 'telephone','datecontact',];
+      protected $fillable = ['id','nom', 'prenom', 'telephone','email', 'image','datecontact',];
 
 }

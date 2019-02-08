@@ -21,7 +21,6 @@ Route::get('/formclients', 'ClientsController@create');
 
 Route::post('/saveclient', 'ClientsController@store');
 
-
 Route::get('/editclient/{id}', 'ClientsController@editClient')->where('id', '[0-9]+');
 
 Route::post('/updateclient/{id}', 'ClientsController@updateClient');

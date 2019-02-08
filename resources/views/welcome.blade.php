@@ -11,19 +11,22 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Styles -->
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!--  <link href="{{ asset('css/clients.css') }}" rel="stylesheet"> -->
+    <!-- !! asset('css/clients.css') !!   <link href="{ }" rel="stylesheet"> -->
+    <style> textarea { resize: none; } </style>
 </head>
 <body>
 
 <div class="container-fluid">
     <div class="row nav">
-        <div class="col-md-3 links">
+        <div class="col-md-6 links">
             <a href="{{ url('/clients') }}">Test</a>
             <a href="{{ url('/formclients') }}">Form</a>
           
         </div>
-        <div class="col-md-9 text-right links">
+        <div class="col-md-6 text-right links">
             <a href="{{ url('/') }}">Return</a>
         </div>
     </div>

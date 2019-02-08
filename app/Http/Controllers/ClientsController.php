@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ClientRequest;
 use App\Client;
 
 class ClientsController extends Controller
@@ -24,18 +25,43 @@ class ClientsController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(ClientRequest $client_request)
     {
       // code...
     $client = new Client();
 
-    $client->nom = $request->input('nom');
-    $client->prenom = $request->input('prenom');
-    $client->telephone = $request->input('telephone');
-    $client->datecontact = $request->input('datecontact');
+    $client->nom = $client_request->input('nom');
+    $client->prenom = $client_request->input('prenom');
+    $client->telephone = $client_request->input('telephone');
+    $client->email = $client_request->input('email');
+    $client->datecontact = $client_request->input('datecontact');
+
+    /** IMAGE **/
+    $image = $client_request->file('image');
+
+    if($image->isValid()){
+
+        $chemin = config('images.path');
+
+        $extension = $image->getClientOriginalExtension();
+
+        do{
+            $nom_image = str_random(4) . '.' . $extension;
+        }while(file_exists($chemin . '/' . $nom_image));
+
+        if($image->move("$chemin","$nom_image")){
+
+            $client->image = $nom_image;
+
+            // on sauvegarde le client
+            $client->save();
+
+            return view('client_image_ok');
+        }
 
 
-    $client->save();
+
+    }
 
     return redirect('/clients');
 
@@ -49,7 +75,7 @@ class ClientsController extends Controller
 
     }
 
-    public function updateClient(Request $request, $id)
+    public function updateClient(ClientRequest $client_request, $id)
     {
       // code...
         $client = Client::find($id);
@@ -58,10 +84,11 @@ class ClientsController extends Controller
         /*$this->validate($request, [
           'nom'=> 'required|max:20'
         ]);*/
-        $client->nom = $request->input('nom');
-        $client->prenom = $request->input('prenom');
-        $client->telephone = $request->input('telephone');
-        $client->datecontact = $request->input('datecontact');
+        $client->nom = $client_request->input('nom');
+        $client->prenom = $client_request->input('prenom');
+        $client->telephone = $client_request->input('telephone');
+        $client->email = $client_request->input('email');
+        $client->datecontact = $client_request->input('datecontact');
 
         //update : on refait un save
         $client->save();
